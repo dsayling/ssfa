@@ -24,3 +24,7 @@ You may need to use `python3` if not mapped to `/usr/bin/python`.
 python app.py
 ```
 
+## Run the tests
+
+Get the drivers for chrome. 
+
