@@ -40,6 +40,7 @@ jobs:
           command: |
             . venv/bin/activate
             cd tests
+            export PYTHONPATH=$PYTOHNPATH:$PWD
             python -m unittest
       # - store_artifacts:
       #     path: test-reports/
