@@ -37,29 +37,15 @@ jobs:
           paths:
             - "venv"
       - run:
+          name: Start Flask app in background
           command: |
             . venv/bin/activate
             cd app
             python app.py
           background: true
       - run:
+          name: Run tests
           command: |
             . venv/bin/activate
             cd tests
             python -m unittest
-      # - store_artifacts:
-      #     path: test-reports/
-      #     destination: tr1
-      # - store_test_results:
-      #     path: test-reports/
-# Use a package of configuration called an orb.
-# orbs:
-#   # Declare a dependency on the welcome-orb
-#   welcome: circleci/browsertools@0.1.4
-# Orchestrate or schedule a set of jobs
-# workflows:
-#   # Name the workflow "welcome"
-#   welcome:
-#     # Run the welcome/run job in its own container
-#     jobs:
-#       - welcome/run
