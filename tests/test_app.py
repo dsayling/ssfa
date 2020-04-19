@@ -7,8 +7,7 @@ import unittest
 from selenium import webdriver
 import selenium
 
-import app
-
+from app import app
 
 class AcceptanceTest(unittest.TestCase):
 
