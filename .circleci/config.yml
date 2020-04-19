@@ -18,6 +18,7 @@ jobs:
           background: true
       - restore_cache:
           key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - restore_cache:
           key: deps2-{{ .Branch }}-{{ checksum "tests/requirements.txt" }}
       - run:
           name: Install Python deps in a venv
