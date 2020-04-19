@@ -5,7 +5,7 @@ app = flask.Flask(__name__)
 # info for index.html, loaded on GET
 BUTTON_NAME = 'button'
 ELEM_NAME = 'mtext'
-WELCOME_TEXT = 'Hello! Click the button for new text'
+WELCOME_TEXT = 'Hello! Click for new text'
 BUTTON_TEXT = 'Click me!'
 
 # info for new.html, loaded on POST
