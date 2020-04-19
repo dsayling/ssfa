@@ -25,7 +25,8 @@ class AcceptanceTest(unittest.TestCase):
             assert elem1.text == app.WELCOME_TEXT
             elem2 = driver.find_element_by_name(app.BUTTON_NAME)
             elem2.click()
-            driver.find_element_by_name(app.NEW_ELEM_NAME)
+            elem3 = driver.find_element_by_name(app.NEW_ELEM_NAME)
+            assert elem3.text == app.NEW_TEXT
 
     def test_selenium_chrome(self):
         self._generic_test(webdriver.Chrome)
