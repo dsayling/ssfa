@@ -34,8 +34,12 @@ jobs:
       - run:
           command: |
             . venv/bin/activate
-            which /usr/local/bin/chromedriver
-            which /usr/local/bin/geckodriver
+            python app.py
+          background: true
+      - run:
+          command: |
+            . venv/bin/activate
+            python -m unittest
       # - store_artifacts:
       #     path: test-reports/
       #     destination: tr1
