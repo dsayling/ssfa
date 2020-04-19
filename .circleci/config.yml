@@ -39,7 +39,8 @@ jobs:
       - run:
           command: |
             . venv/bin/activate
-            python app/app.py
+            cd app
+            python app.py
           background: true
       - run:
           command: |
