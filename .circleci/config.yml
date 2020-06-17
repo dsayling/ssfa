@@ -3,7 +3,6 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
-  pipenv: dsayling/pipenv-orb@dev:alpha
 
 workflows:
   heroku_deploy:
@@ -17,6 +16,8 @@ workflows:
               only: master
 
 jobs:
+  orbs:
+    pipenv: dsayling/pipenv-orb@dev:alpha
   build:
     docker:
       - image: circleci/python:3.6.2-stretch-browsers
