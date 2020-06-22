@@ -24,7 +24,7 @@ jobs:
     steps:
       - checkout
       - pipenv/install:
-        args: --dev -e .
+          args: --dev -e .
       - run:
           name: Start Flask app in background
           command: |
