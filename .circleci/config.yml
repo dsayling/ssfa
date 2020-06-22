@@ -60,11 +60,11 @@ jobs:
           command: |
             # . venv/bin/activate
             cd app
-            python app.py
+            pipenv run python app.py
           background: true
       - run:
           name: Run tests
           command: |
             # . venv/bin/activate
             cd tests
-            python -m unittest
+            pipenv run python -m unittest
