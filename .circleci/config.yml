@@ -41,7 +41,7 @@ jobs:
           # name: Install Python deps in a venv
     # Install Python deps in with pipenv orb
       - pipenv/install:
-        args: "--dev -e ."
+          args: "--dev -e ."
       #     command: |
       #       python3 -m venv venv
       #       . venv/bin/activate
