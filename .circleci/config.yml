@@ -22,12 +22,10 @@ jobs:
     docker:
       - image: ubuntu:focal
     steps:
+      - run: apt update
       - run:
           command: |
-            apt update
-            apt install --no-upgrade --no-install-recommends \
-              openssh-server \
-              git
+            apt install --no-upgrade --no-install-recommends openssh-server git
       - checkout
       - run:
           name: hmm
