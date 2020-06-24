@@ -23,10 +23,12 @@ jobs:
                 --no-progress \
                 openssh-client && \
             rm -rf /var/cache/apk/*
+            # now link bash to sh instead of busybox
+            ln -fs /bin/bash /bin/sh
 
       - checkout
       - run:
           name: hmm
           command: |
             touch $HOME/test.py
-            sleep 7m
+            # sleep 7m
