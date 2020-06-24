@@ -15,6 +15,15 @@ jobs:
       # - image: circleci/python:3.6.2-stretch-browsers
       - image: github/super-linter
     steps:
+      - run:
+          name: "Install git and SSH client"
+          command: |
+            apk add \
+                --update-cache \
+                --no-progress \
+                openssh-client && \
+            rm -rf /var/cache/apk/*
+
       - checkout
       - run:
           name: hmm
