@@ -6,30 +6,27 @@ workflows:
     jobs:
       - build
 
+# - run:
+#     name: "Install git and SSH client"
+#     command: |
+#       apk add \
+#           --update-cache \
+#           --no-progress \
+#           openssh-client=7.6 \
+#           dash && \
+#       rm -rf /var/cache/apk/*
+#       # now link bash to sh instead of busybox
+#       ln -fs /usr/bin/dash /bin/sh
 jobs:
   build:
     docker:
-      # - image: circleci/python:3.6.2-stretch-browsers
-      # - image: github/super-linter
       - image: ubuntu:focal
     steps:
-        - run:
+      - run:
           command: |
             apt install --no-upgrade --no-install-recommends \
               openssh-server \
               git
-      # - run:
-      #     name: "Install git and SSH client"
-      #     command: |
-      #       apk add \
-      #           --update-cache \
-      #           --no-progress \
-      #           openssh-client=7.6 \
-      #           dash && \
-      #       rm -rf /var/cache/apk/*
-      #       # now link bash to sh instead of busybox
-      #       ln -fs /usr/bin/dash /bin/sh
-
       - checkout
       - run:
           name: hmm
