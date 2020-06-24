@@ -25,7 +25,7 @@ jobs:
       - run: apt update
       - run:
           command: |
-            apt install --no-upgrade --no-install-recommends openssh-server git
+            apt install -y --no-upgrade --no-install-recommends openssh-server git
       - checkout
       - run:
           name: hmm
