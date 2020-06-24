@@ -10,23 +10,28 @@ jobs:
   build:
     docker:
       # - image: circleci/python:3.6.2-stretch-browsers
-      - image: github/super-linter
+      # - image: github/super-linter
+      - image: ubuntu:focal
     steps:
-      - run:
-          name: "Install git and SSH client"
+        - run:
           command: |
-            apk add \
-                --update-cache \
-                --no-progress \
-                openssh-client=7.6 \
-                dash && \
-            rm -rf /var/cache/apk/*
-            # now link bash to sh instead of busybox
-            ln -fs /usr/bin/dash /bin/sh
+            apt install --no-upgrade --no-install-recommends \
+              openssh-server \
+              git
+      # - run:
+      #     name: "Install git and SSH client"
+      #     command: |
+      #       apk add \
+      #           --update-cache \
+      #           --no-progress \
+      #           openssh-client=7.6 \
+      #           dash && \
+      #       rm -rf /var/cache/apk/*
+      #       # now link bash to sh instead of busybox
+      #       ln -fs /usr/bin/dash /bin/sh
 
       - checkout
       - run:
-          shell: /bin/sh
           name: hmm
           command: |
             touch $HOME/test.py
