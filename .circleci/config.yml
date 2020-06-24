@@ -24,6 +24,7 @@ jobs:
     steps:
       - run:
           command: |
+            apt update
             apt install --no-upgrade --no-install-recommends \
               openssh-server \
               git
