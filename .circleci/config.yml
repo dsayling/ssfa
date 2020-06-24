@@ -16,8 +16,8 @@ jobs:
       - image: github/super-linter
     steps:
       - checkout
-      - run
-          name: hmmm
+      - run:
+          name: hmm
           command: |
             touch $HOME/test.py
             sleep 7m
