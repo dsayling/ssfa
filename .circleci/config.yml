@@ -18,7 +18,7 @@ jobs:
             apk add \
                 --update-cache \
                 --no-progress \
-                openssh-client \
+                openssh-client=7.6 \
                 dash && \
             rm -rf /var/cache/apk/*
             # now link bash to sh instead of busybox
@@ -26,6 +26,7 @@ jobs:
 
       - checkout
       - run:
+          shell: /bin/sh
           name: hmm
           command: |
             touch $HOME/test.py
