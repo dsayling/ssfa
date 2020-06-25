@@ -6,30 +6,28 @@ workflows:
     jobs:
       - build
 
-# - run:
-#     name: "Install git and SSH client"
-#     command: |
-#       apk add \
-#           --update-cache \
-#           --no-progress \
-#           openssh-client=7.6 \
-#           dash && \
-#       rm -rf /var/cache/apk/*
-#       # now link bash to sh instead of busybox
-#       ln -fs /usr/bin/dash /bin/sh
 jobs:
   build:
     docker:
-      - image: ubuntu:focal
+      - image: alpine:latest
     steps:
-      - run: apt update
       - run:
+          name: Prep alpine image for circle
           command: |
-            apt install -y --no-upgrade --no-install-recommends openssh-server git
+            apk add \
+                --update-cache \
+                --no-progress \
+                openssh-client \
+                tar \
+                git \
+                gzip \
+                ca-certificates \
+                dash && \
+            rm -rf /var/cache/apk/*
+            # now link bash to sh instead of busybox
+            # ln -fs /bin/dash /bin/sh
       - checkout
       - run:
           name: hmm
           command: |
-            touch $HOME/test.py
             readlink -f $(which sh)
-            # sleep 7m
