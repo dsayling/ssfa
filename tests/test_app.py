@@ -14,10 +14,10 @@ class AcceptanceTest(unittest.TestCase):
     @unittest.expectedFailure
     def test_false(self):
         assert False
-    
+
     def test_true(self):
         assert True
-    
+
     def _generic_test(self, wdriver):
         with wdriver() as driver:
             driver.get("http://localhost:5000")
@@ -31,7 +31,5 @@ class AcceptanceTest(unittest.TestCase):
     def test_selenium_chrome(self):
         self._generic_test(webdriver.Chrome)
 
-    # mark this as a failure since I'm just going to get chrome going
-    @unittest.expectedFailure
     def test_selenium_firefox(self):
         self._generic_test(webdriver.Firefox)
