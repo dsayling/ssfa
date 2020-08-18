@@ -23,7 +23,9 @@ jobs:
     # - image: circleci/python:3.6.2-stretch-browsers
     steps:
       - run: sudo apt update && sudo apt install openjdk-11-jdk
-      - browser-tools/install-browser-tools
+      - browser-tools/install-browser-tools:
+          firefox-version: "78.0"
+
       - checkout
       - run: mkdir test-reports
       - run:
