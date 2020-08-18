@@ -3,7 +3,6 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
-  browser-tools: circleci/browser-tools@1.0.1
 
 workflows:
   heroku_deploy:
@@ -19,11 +18,11 @@ workflows:
 jobs:
   build:
     docker:
-      - image: circleci/python:3.6.2-stretch-browsers
+        - image: cimg/python:3.6.10
+    # - image: circleci/python:3.6.2-stretch-browsers
     steps:
       - checkout
       - run: mkdir test-reports
-      - browser-tools/install-browser-tools
       - run:
           name: Download Selenium
           command: |
