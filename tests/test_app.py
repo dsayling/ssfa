@@ -40,5 +40,4 @@ class AcceptanceTest(unittest.TestCase):
     def test_selenium_firefox(self):
         firefox_options = FOptions()
         firefox_options.add_argument("--headless")
-        firefox_options.log.level = "trace"
         self._generic_test(webdriver.Firefox, firefox_options)
