@@ -21,7 +21,7 @@ class AcceptanceTest(unittest.TestCase):
     def test_true(self):
         assert True
 
-    def _generic_test(self, wdriver, options=Options()):
+    def _generic_test(self, wdriver, options=None):
         with wdriver(options=options) as driver:
             driver.get("http://localhost:5000")
             elem1 = driver.find_element_by_name(app.ELEM_NAME)
