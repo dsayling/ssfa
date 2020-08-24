@@ -6,6 +6,7 @@ Was going to use pytest, but why add another dependency.
 import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options as FOptions
 import selenium
 
 from app import app
@@ -37,4 +38,7 @@ class AcceptanceTest(unittest.TestCase):
         self._generic_test(webdriver.Chrome, chrome_options)
 
     def test_selenium_firefox(self):
-        self._generic_test(webdriver.Firefox)
+        firefox_options = FOptions()
+        firefox_options.add_argument("--headless")
+        firefox_options.log.level = "trace"
+        self._generic_test(webdriver.Firefox, firefox_options)
