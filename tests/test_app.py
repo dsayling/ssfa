@@ -7,7 +7,6 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.firefox.options import Options as FOptions
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import selenium
 
 from app import app
@@ -41,7 +40,5 @@ class AcceptanceTest(unittest.TestCase):
     def test_selenium_firefox(self):
         firefox_options = FOptions()
         firefox_options.add_argument("--headless")
-        cap = DesiredCapabilities().FIREFOX
-        cap["marionette"] = False
-        with webdriver.Firefox(options=firefox_options, capabilities=cap) as driver:
+        with webdriver.Firefox(options=firefox_options) as driver:
             self._generic_test(driver)
