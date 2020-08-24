@@ -32,8 +32,6 @@ class AcceptanceTest(unittest.TestCase):
     def test_selenium_chrome(self):
         self._generic_test(webdriver.Chrome)
 
-    # mark this as a failure since I'm just going to get chrome going
-    @unittest.expectedFailure
     def test_selenium_firefox(self):
         firefox_options = FOptions()
         firefox_options.add_argument("--headless")
