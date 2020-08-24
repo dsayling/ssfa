@@ -5,9 +5,12 @@ Was going to use pytest, but why add another dependency.
 
 import unittest
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 import selenium
 
 from app import app
+
+
 
 class AcceptanceTest(unittest.TestCase):
 
@@ -18,8 +21,8 @@ class AcceptanceTest(unittest.TestCase):
     def test_true(self):
         assert True
 
-    def _generic_test(self, wdriver):
-        with wdriver() as driver:
+    def _generic_test(self, wdriver, options=Options()):
+        with wdriver(options=options) as driver:
             driver.get("http://localhost:5000")
             elem1 = driver.find_element_by_name(app.ELEM_NAME)
             assert elem1.text == app.WELCOME_TEXT
@@ -29,7 +32,9 @@ class AcceptanceTest(unittest.TestCase):
             assert elem3.text == app.NEW_TEXT
 
     def test_selenium_chrome(self):
-        self._generic_test(webdriver.Chrome)
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        self._generic_test(webdriver.Chrome, chrome_options)
 
     def test_selenium_firefox(self):
         self._generic_test(webdriver.Firefox)
