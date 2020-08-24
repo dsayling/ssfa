@@ -31,6 +31,13 @@ jobs:
           command: |
             java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
+      - run:
+          name: Install geckodriver
+          command: |
+            wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz &&
+            tar -xvzf geckodriver* &&
+            chmod +x geckodriver &&
+            sudo mv geckodriver /usr/local/bin
       - restore_cache:
           key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - restore_cache:
