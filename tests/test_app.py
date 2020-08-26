@@ -5,11 +5,13 @@ Was going to use pytest, but why add another dependency.
 
 import unittest
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.firefox.options import Options as FOptions
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import selenium
 
 from app import app
+
+
 
 class AcceptanceTest(unittest.TestCase):
 
@@ -30,13 +32,13 @@ class AcceptanceTest(unittest.TestCase):
         assert elem3.text == app.NEW_TEXT
 
     def test_selenium_chrome(self):
-        with webdriver.Chrome() as driver:
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        with webdriver.Chrome(options=chrome_options) as driver:
             self._generic_test(driver)
 
     def test_selenium_firefox(self):
         firefox_options = FOptions()
         firefox_options.add_argument("--headless")
-        cap = DesiredCapabilities().FIREFOX
-        cap["marionette"] = False
-        with webdriver.Firefox(options=firefox_options, capabilities=cap) as driver:
+        with webdriver.Firefox(options=firefox_options) as driver:
             self._generic_test(driver)

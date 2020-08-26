@@ -3,6 +3,7 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
+  browser-tools: circleci/browser-tools@1.0.1
 
 workflows:
   heroku_deploy:
@@ -18,8 +19,12 @@ workflows:
 jobs:
   build:
     docker:
-      - image: circleci/python:3.6.2-stretch-browsers
+        - image: cimg/python:3.6.10
     steps:
+      - run: sudo apt update && sudo apt install openjdk-11-jdk
+      - browser-tools/install-browser-tools:
+          firefox-version: "78.0"
+
       - checkout
       - run: mkdir test-reports
       - run:
@@ -31,13 +36,6 @@ jobs:
           command: |
             java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
-      - run:
-          name: Install geckodriver
-          command: |
-            wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz &&
-            tar -xvzf geckodriver* &&
-            chmod +x geckodriver &&
-            sudo mv geckodriver /usr/local/bin
       - restore_cache:
           key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - restore_cache:
