@@ -19,13 +19,11 @@ workflows:
 jobs:
   build:
     docker:
-      # - image: cimg/python:3.6.10
       - image: dayling/test-repo:test
 
     steps:
-      # - run: sudo apt update && sudo apt install openjdk-11-jdk
-      # - browser-tools/install-browser-tools:
-      #     firefox-version: "78.0"
+      - browser-tools/install-browser-tools:
+          firefox-version: "78.0"
 
       - checkout
       - run: mkdir test-reports
