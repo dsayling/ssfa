@@ -19,22 +19,24 @@ workflows:
 jobs:
   build:
     docker:
-        - image: cimg/python:3.6.10
+      # - image: cimg/python:3.6.10
+      - image: dayling/test-repo:test
+
     steps:
-      - run: sudo apt update && sudo apt install openjdk-11-jdk
-      - browser-tools/install-browser-tools:
-          firefox-version: "78.0"
+      # - run: sudo apt update && sudo apt install openjdk-11-jdk
+      # - browser-tools/install-browser-tools:
+      #     firefox-version: "78.0"
 
       - checkout
       - run: mkdir test-reports
+      # - run:
+      #     name: Download Selenium
+      #     command: |
+      #       curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
       - run:
-          name: Download Selenium
+          name: Start pre-installed Selenium
           command: |
-            curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
-      - run:
-          name: Start Selenium
-          command: |
-            java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+            java -jar /usr/local/bin/selenium.jar -log test-reports/selenium.log
           background: true
       - restore_cache:
           key: deps1v1-{{ .Branch }}-{{ checksum "requirements.txt" }}
