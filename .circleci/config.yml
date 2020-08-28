@@ -19,7 +19,8 @@ workflows:
 jobs:
   build:
     docker:
-      - image: dayling/test-repo:test
+      # - image: dayling/test-repo:test
+      - image: dayling/test-repo:baseline  # has the browsers pre-installed
 
     steps:
       - browser-tools/install-browser-tools:
