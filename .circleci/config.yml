@@ -23,8 +23,8 @@ jobs:
       - image: dayling/test-repo:baseline  # has the browsers pre-installed
 
     steps:
-      - browser-tools/install-browser-tools:
-          firefox-version: "78.0"
+      - browser-tools/install-browser-tools
+          # firefox-version: "78.0"
 
       - checkout
       - run: mkdir test-reports
