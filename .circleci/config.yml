@@ -3,7 +3,7 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
-  browser-tools: circleci/browser-tools@1.0.1
+  browser-tools: circleci/browser-tools@dev:89ac2ae
 
 workflows:
   heroku_deploy:
@@ -19,13 +19,13 @@ workflows:
 jobs:
   build:
     docker:
-      # - image: dayling/test-repo:test
-      - image: dayling/test-repo:baseline  # has the browsers pre-installed
+      - image: dayling/test-repo:test
+      # - image: dayling/test-repo:baseline  # has the browsers pre-installed
 
     steps:
+      - browser-tools/restore-browser-tools
       - browser-tools/install-browser-tools
-          # firefox-version: "78.0"
-
+      - browser-tools/cache-browser-tools
       - checkout
       - run: mkdir test-reports
       # - run:
