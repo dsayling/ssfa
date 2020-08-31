@@ -23,9 +23,11 @@ jobs:
       # - image: dayling/test-repo:baseline  # has the browsers pre-installed
 
     steps:
-      - browser-tools/restore-browser-tools
+      - browser-tools/restore-browser-tools:
+          cache-version: v2
       - browser-tools/install-browser-tools
-      - browser-tools/cache-browser-tools
+      - browser-tools/cache-browser-tools:
+          cache-version: v2
       - checkout
       - run: mkdir test-reports
       # - run:
