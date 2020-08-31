@@ -3,7 +3,7 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
-  browser-tools: circleci/browser-tools@dev:cb37ee9
+  browser-tools: circleci/browser-tools@dev:cache-testing
 
 workflows:
   heroku_deploy:
