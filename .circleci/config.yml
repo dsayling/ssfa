@@ -9,8 +9,9 @@ workflows:
   heroku_deploy:
     jobs:
       - browser-tools/browser-setup:
-          post-steps:
+          pre-steps:
             - checkout
+          post-steps:
             - run: mkdir test-reports
             - run:
                 name: Start pre-installed Selenium
