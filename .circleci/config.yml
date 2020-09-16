@@ -9,6 +9,9 @@ workflows:
   heroku_deploy:
     jobs:
       - browser-tools/browser-setup:
+          firefox-version: "80.0.1"
+          geckodriver-version: "0.27.0"
+          chrome-version: "85.0.4183.102"
           pre-steps:
             - checkout
           post-steps:
