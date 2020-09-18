@@ -4,6 +4,7 @@ version: 2.1
 orbs:
   heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
   browser-tools: circleci/browser-tools@1.0.1
+  python: circleci/python@1.0.0
 
 workflows:
   heroku_deploy:
@@ -36,36 +37,23 @@ jobs:
           command: |
             java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
-      - restore_cache:
-          key: deps1v1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-      - restore_cache:
-          key: deps2v1-{{ .Branch }}-{{ checksum "tests/requirements.txt" }}
+      - python/install-packages:
+          pkg-manager: pip
+      - python/install-packages:
+          app-dir: tests/
+          pkg-manager: pip
       - run:
-          name: Install Python deps in a venv
+          name: Install package as app
           command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-            pip install -r tests/requirements.txt
             pip install -e .
-      - save_cache:
-          key: deps1v1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-          paths:
-            - "venv"
-      - save_cache:
-          key: deps2v1-{{ .Branch }}-{{ checksum "tests/requirements.txt" }}
-          paths:
-            - "venv"
       - run:
           name: Start Flask app in background
           command: |
-            . venv/bin/activate
             cd app
             python app.py
           background: true
       - run:
           name: Run tests
           command: |
-            . venv/bin/activate
             cd tests
             python -m unittest
