@@ -10,50 +10,19 @@ workflows:
   heroku_deploy:
     jobs:
       - build
-      - heroku/deploy-via-git:
-          requires:
-            - build # only run deploy-via-git job if the build job has completed
-          filters:
-            branches:
-              only: master
 
 jobs:
   build:
     docker:
-        - image: cimg/python:3.6.10
+            - image: dayling/test-repo:test
     steps:
-      - run: sudo apt update && sudo apt install openjdk-11-jdk
       - browser-tools/install-browser-tools:
           firefox-version: "78.0"
+      - run:
+          command: |
+            google-chrome --version
+            firefox --version
+            geckodriver --version
+            chromedriver --version
+          name: Check install
 
-      - checkout
-      - run: mkdir test-reports
-      - run:
-          name: Download Selenium
-          command: |
-            curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
-      - run:
-          name: Start Selenium
-          command: |
-            java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
-          background: true
-      - python/install-packages:
-          pkg-manager: pip
-      - python/install-packages:
-          app-dir: tests/
-          pkg-manager: pip
-      - run:
-          name: Install package as app
-          command: |
-            pip install -e .
-      - run:
-          name: Start Flask app in background
-          command: |
-            cd app
-            python app.py
-          background: true
-      - run:
-          name: Run tests
-          command: |
-            cd tests
-            python -m unittest
