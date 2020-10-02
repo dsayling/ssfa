@@ -3,17 +3,17 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
-  browser-tools: circleci/browser-tools@dev:cache-testing
+  browser-tools: circleci/browser-tools@dev:full-image
   python: circleci/python@1.0.0
 
 workflows:
   heroku_deploy:
     jobs:
       - browser-tools/browser-setup:
-          chrome-version: "85.0.4183.102"
-          firefox-version: "80.0.1"
+          chrome-version: "85.0.4183.83"
+          firefox-version: "80.0"
           geckodriver-version: "v0.27.0"
-          cache-version: v2
+          cache-version: v3
           post-steps:
             - run:
                 name: Check install
