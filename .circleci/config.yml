@@ -2,11 +2,22 @@ version: 2.1
 jobs: 
   sample:
     docker:
-      - image: cimg/node:10.18.0
-    working_directory: ~/repo
+      - image: circleci/openjdk:8u262-jdk
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    environment:
+      JVM_OPTS: -Xmx3200m
+    shell: /bin/bash --login -eo pipefail
+    working_directory: ~/src
     steps:
-      - checkout
-      - run: touch test.txt && git add test.txt
+      - run: 
+          command: |
+            echo 'export $(cat ~/src/build-config.txt | xargs)' >> $BASH_ENV
+            echo 'export VERSION="$(cat ~/src/version)"' >> $BASH_ENV
+            printenv
+            java -version
+
 
 workflows:
   sample_wf: # this is the name of our workflow
