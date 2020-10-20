@@ -3,8 +3,8 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
-  browser-tools: circleci/browser-tools@1.0.1
-  python: circleci/python@1.0.0
+  browser-tools: circleci/browser-tools@1.1
+  python: circleci/python@1.2
 
 workflows:
   heroku_deploy:
@@ -20,32 +20,23 @@ workflows:
 jobs:
   build:
     docker:
-        - image: cimg/python:3.6.10
+        - image: cimg/python:3.6-browsers
     steps:
-      - run: sudo apt update && sudo apt install openjdk-11-jdk
-      - browser-tools/install-browser-tools:
-          firefox-version: "78.0"
-
+      - browser-tools/install-browser-tools
       - checkout
       - run: mkdir test-reports
       - run:
-          name: Download Selenium
-          command: |
-            curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
-      - run:
           name: Start Selenium
           command: |
-            java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+            java -jar /usr/local/bin/selenium.jar -log test-reports/selenium.log
           background: true
       - python/install-packages:
           pkg-manager: pip
       - python/install-packages:
           app-dir: tests/
           pkg-manager: pip
-      - run:
-          name: Install package as app
-          command: |
-            pip install -e .
+      - python/install-packages:
+          pkg-manager: pip-dist
       - run:
           name: Start Flask app in background
           command: |
