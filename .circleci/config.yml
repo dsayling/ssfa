@@ -8,7 +8,7 @@ jobs:
     steps:
       - run: echo $PATH
       - run: pyenv --help
-      - run: echo "export PATH=$(pwd):$PATH" >> $BASH_ENV
+      - run: echo "export PATH=$PATH:$PWD" >> $BASH_ENV
       - run: pyenv --help
 
 workflows:
