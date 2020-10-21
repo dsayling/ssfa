@@ -1,12 +1,13 @@
 version: 2.1
+
+orbs:
+  gcp-cli: circleci/gcp-cli@1.8
 jobs: 
   sample:
-    docker:
-      - image: cimg/node:10.18.0
-    working_directory: ~/repo
+    machine: true
     steps:
-      - checkout
-      - run: touch test.txt && git add test.txt
+      - gcp-cli/install
+      - gcp-cli/initialize
 
 workflows:
   sample_wf: # this is the name of our workflow
