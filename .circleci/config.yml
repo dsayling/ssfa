@@ -4,7 +4,8 @@ orbs:
   gcp-cli: circleci/gcp-cli@1.8
 jobs: 
   sample:
-    machine: true
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - run: echo $PATH
       - run: pyenv --help
