@@ -8,11 +8,9 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - run: echo $PATH
-      - run: pyenv --help
       - gcp-cli/install
-      - run: echo "export PATH=$PATH:$PWD" >> $BASH_ENV
-      - run: pyenv --help
-      - run: gcloud --version
+      - run: echo "export PATH=$(pwd)/bin:$PWD" >> $BASH_ENV
+      - run: gcloud version
 
 workflows:
   sample_wf: # this is the name of our workflow
