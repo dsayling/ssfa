@@ -5,7 +5,7 @@ orbs:
 jobs: 
   sample:
     machine:
-      image: ubuntu-1604:202004-01
+      image: ubuntu-1604:202010-01
     steps:
       - run: echo $PATH
       - gcp-cli/install
@@ -13,6 +13,6 @@ jobs:
       - run: gcloud --version
 
 workflows:
-  sample_wf: # this is the name of our workflow
-    jobs: # and here we list the jobs we are going to run.
+  sample_wf:
+    jobs:
       - sample
