@@ -4,8 +4,8 @@ orbs:
   gcp-cli: circleci/gcp-cli@1.8
 jobs: 
   sample:
-    machine: true
-    steps:
+    machine: ubuntu-1604:202010-01 
+  steps:
       - run: echo $PATH
       - run: echo "export PATH=$PATH:$PWD" >> $BASH_ENV
       - run: pyenv --help
