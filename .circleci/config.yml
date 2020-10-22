@@ -9,8 +9,10 @@ jobs:
     steps:
       - run: echo $PATH
       - run: pyenv --help
+      - gcp-cli/install
       - run: echo "export PATH=$PATH:$PWD" >> $BASH_ENV
       - run: pyenv --help
+      - run: gcloud --version
 
 workflows:
   sample_wf: # this is the name of our workflow
