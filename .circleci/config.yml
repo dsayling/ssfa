@@ -5,7 +5,7 @@ orbs:
 jobs: 
   sample:
     machine: ubuntu-1604:202010-01 
-  steps:
+    steps:
       - run: echo $PATH
       - run: echo "export PATH=$PATH:$PWD" >> $BASH_ENV
       - run: pyenv --help
