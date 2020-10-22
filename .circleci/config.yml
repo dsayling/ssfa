@@ -10,7 +10,7 @@ jobs:
       - run: echo $PATH
       - gcp-cli/install
       - run: echo "export PATH=$(pwd)/bin:$PWD" >> $BASH_ENV
-      - run: gcloud version
+      - run: gcloud --version
 
 workflows:
   sample_wf: # this is the name of our workflow
