@@ -7,8 +7,6 @@ jobs:
     machine: 
       image: ubuntu-2004:202010-01
     steps:
-      - run: echo "export PATH=$PATH:$PWD" >> $BASH_ENV
-      - run: pyenv --help
       - run: gcloud --version
 
 workflows:
