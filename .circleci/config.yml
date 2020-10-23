@@ -4,12 +4,11 @@ orbs:
   gcp-cli: circleci/gcp-cli@1.8
 jobs: 
   sample:
-    machine:
-      image: ubuntu-1604:202010-01
+    machine: true
     steps:
       - run: echo $PATH
       - gcp-cli/install
-      - run: echo "export PATH=$(pwd)/bin:$PATH" >> $BASH_ENV
+      - run: echo 'export PATH=$(pwd)/bin:$PATH' >> $BASH_ENV
       - run: gcloud --version
 
 workflows:
