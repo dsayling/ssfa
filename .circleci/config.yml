@@ -9,8 +9,8 @@ jobs:
     steps:
       - run: ruby -v
       - ruby/install:
-          version: '2.7.0'
-      - run: ruby -v | grep '2.7.1'
+          version: '2.6.6'
+      - run: ruby -v | grep '2.6.6'
 
 workflows:
   sample_wf:
