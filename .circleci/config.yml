@@ -2,7 +2,7 @@ version: 2.1
 orbs:
         ruby: circleci/ruby@dev:fix-install
 
-jobs: 
+jobs:
   sample:
     machine:
       image: ubuntu-1604:202004-01
@@ -10,8 +10,8 @@ jobs:
       - run: echo "deploy"
       - run: ruby -v
       - ruby/install:
-          version: '2.7'
-      - run: ruby -v
+          version: '2.7.0'
+      - run: ruby -v | grep '2.7.1'
 
 workflows:
   sample_wf:
