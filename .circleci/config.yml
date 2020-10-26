@@ -1,15 +1,16 @@
 version: 2.1
-
 orbs:
-  gcp-cli: circleci/gcp-cli@1.8
+        ruby: circleci/ruby@dev:fix-install
+
 jobs: 
   sample:
     machine: true
     steps:
-      - run: echo $PATH
-      - gcp-cli/install
-      - run: echo 'export PATH=$(pwd)/bin:$PATH' >> $BASH_ENV
-      - run: gcloud --version
+      - run: echo "deploy"
+      - run: ruby -v
+      - ruby/install:
+          version: '2.7'
+      - run: ruby -v
 
 workflows:
   sample_wf:
