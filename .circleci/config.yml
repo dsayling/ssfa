@@ -1,20 +1,30 @@
 version: 2.1
-orbs:
-        ruby: circleci/ruby@dev:fix-install
+
+executors:
+  existing:
+    machine:
+      image: ubuntu-2004:202004-01
+  canary:
+    machine:
+      image: ubuntu-2004:canary
+
 
 jobs:
   sample:
-    machine:
-      image: ubuntu-2004:canary
+    parameters:
+      os:
+        type: executor
+    executor: << parameters.os >>
     steps:
       - run: |
           set -x
-          python --version
           python3 --version
           python3 -c 'import lzma; print(dir(lzma))'
-          python -c 'import lzma; print dir(lzma)'
 
 workflows:
   sample_wf:
     jobs:
-      - sample
+      - sample:
+          matrix:
+              parameters:
+                os: [existing, canary]
