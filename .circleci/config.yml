@@ -5,7 +5,7 @@ orbs:
 jobs:
   sample:
     machine:
-      image: ubuntu-2004:202010-01
+      image: ubuntu-2004:canary
     steps:
       - run: |
           set -x
