@@ -8,9 +8,11 @@ jobs:
       image: ubuntu-1604:202010-01
     steps:
       - run: |
+          set -x
           python --version
-          pyenv global
-          pyenv versions
+          python3 --version
+          python3 -c 'import lzma; print(dir(lzma))'
+          python -c 'import lzma; print dir(lzma)'
 
 workflows:
   sample_wf:
