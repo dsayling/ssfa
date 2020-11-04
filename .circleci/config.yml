@@ -5,11 +5,10 @@ orbs:
 jobs:
   sample:
     machine:
-      image: ubuntu-1604:202010-01
+      image: ubuntu-2004:202010-01
     steps:
       - run: |
           set -x
-          pyenv global 3.8.6
           python --version
           python3 --version
           python3 -c 'import lzma; print(dir(lzma))'
