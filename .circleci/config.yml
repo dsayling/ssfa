@@ -7,9 +7,10 @@ jobs:
     machine:
       image: ubuntu-1604:202010-01
     steps:
-      python --version
-      pyenv global
-      pyenv versions
+      - run: |
+          python --version
+          pyenv global
+          pyenv versions
 
 workflows:
   sample_wf:
