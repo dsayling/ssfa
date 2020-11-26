@@ -18,6 +18,9 @@ def home():
     """Render a template with the first text and button."""
     roll = request.args.get('roll')
     output(roll)
+    return flask.render_template('new.html',
+                                 ntext=NEW_TEXT,
+                                 nname=NEW_ELEM_NAME)
 
 @app.route('/', methods=['POST'])
 def home_post():
