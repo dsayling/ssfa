@@ -1,50 +1,33 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-orbs:
-  heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
-  browser-tools: circleci/browser-tools@1.1
-  python: circleci/python@1.2
-
 workflows:
-  heroku_deploy:
+  version: 2
+  build-test-and-approval-deploy:
     jobs:
-      - build
-      - heroku/deploy-via-git:
+      - build 
+      - test:
+          requires: 
+            - build
+      - deploy:
+          type: approval
           requires:
-            - build # only run deploy-via-git job if the build job has completed
-          filters:
-            branches:
-              only: master
-
+            - test
 jobs:
   build:
     docker:
-        - image: cimg/python:3.6-browsers
+      - image: cimg/python:3.8
     steps:
-      - browser-tools/install-browser-tools
-      - checkout
-      - run: mkdir test-reports
-      - run:
-          name: Start Selenium
-          command: |
-            java -jar /usr/local/bin/selenium.jar -log test-reports/selenium.log
-          background: true
-      - python/install-packages:
-          pkg-manager: pip
-      - python/install-packages:
-          app-dir: tests/
-          pkg-manager: pip
-      - python/install-packages:
-          pkg-manager: pip-dist
-      - run:
-          name: Start Flask app in background
-          command: |
-            cd app
-            python app.py
-          background: true
-      - run:
-          name: Run tests
-          command: |
-            cd tests
-            python -m unittest
+      - run: echo "hello"
+  test:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - run: echo "hello again"
+  deploy:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - run: echo "deploy!"
+
+
