@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 jobs:
   deploy-dev:
@@ -15,3 +15,8 @@ jobs:
           command: |
             pyenv install 3.9.0
             pyenv global 3.9.0
+
+workflows:
+  main:
+    jobs:
+      - deploy-dev
