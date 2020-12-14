@@ -9,6 +9,6 @@ jobs:
       - image: alpine:3.7
     steps:
       - checkout
-      - run: apk add bash && sed -i 's_/ash_/bash_g' /etc/passwd && echo '/bin/bash' > /etc/shells
+      - run: apk add bash && ln -s /bin/bash /bin/sh -f
       - run: echo "CHICKEN=you" >> $BASH_ENV
       - run: echo $CHICKEN
