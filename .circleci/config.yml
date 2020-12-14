@@ -7,9 +7,10 @@ jobs:
   build:
     docker:
       - image: alpine:3.7
+        entrypoint: ["/bin/bash","/bin/ash"]
       
     steps:
       - checkout
-      - run: apk add bash && ln -sf /bin/bash /bin/sh
+      - run: apk add bash 
       - run: echo "CHICKEN=you" >> $BASH_ENV
       - run: echo $CHICKEN
