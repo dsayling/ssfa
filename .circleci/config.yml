@@ -6,11 +6,25 @@ workflows:
 jobs:
   build:
     docker:
-      - image: alpine:3.7
-        entrypoint: ["/bin/bash","/bin/ash"]
-      
+      - image: cimg/base:2020.12
+    working_directory: ~/project
     steps:
-      - checkout
-      - run: apk add bash 
-      - run: echo "CHICKEN=you" >> $BASH_ENV
-      - run: echo $CHICKEN
+      - run: echo $CIRCLE_WORKING_DIRECTORY
+      - run: eval cd $CIRCLE_WORKING_DIRECTORY
+      - run: cd $CIRCLE_WORKING_DIRECTORY
+  build2:
+    docker:
+      - image: cimg/base:2020.12
+    working_directory: $HOME/project
+    steps:
+      - run: echo $CIRCLE_WORKING_DIRECTORY
+      - run: eval cd $CIRCLE_WORKING_DIRECTORY
+      - run: cd $CIRCLE_WORKING_DIRECTORY
+  build2:
+    docker:
+      - image: cimg/base:2020.12
+    working_directory: "~/project"
+    steps:
+      - run: echo $CIRCLE_WORKING_DIRECTORY
+      - run: eval cd $CIRCLE_WORKING_DIRECTORY
+      - run: cd $CIRCLE_WORKING_DIRECTORY
