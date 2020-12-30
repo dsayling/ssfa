@@ -3,6 +3,8 @@ workflows:
   main:
     jobs:
       - build
+      - build2
+      - build3
 jobs:
   build:
     docker:
@@ -20,7 +22,7 @@ jobs:
       - run: echo $CIRCLE_WORKING_DIRECTORY
       - run: eval cd $CIRCLE_WORKING_DIRECTORY
       - run: cd $CIRCLE_WORKING_DIRECTORY
-  build2:
+  build3:
     docker:
       - image: cimg/base:2020.12
     working_directory: "~/project"
