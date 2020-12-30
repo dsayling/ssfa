@@ -2,9 +2,7 @@ version: 2.1
 workflows:
   main:
     jobs:
-      - build
       - build2
-      - build3
 jobs:
   build2:
     docker:
