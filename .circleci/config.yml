@@ -9,8 +9,8 @@ jobs:
       - image: cimg/base:2020.12
     working_directory: ~/project
     steps:
-      - run: echo $CIRCLE_WORKING_DIRECTORY
+      - run: echo $CIRCLE_WORKING_DIRECTORY && echo $PWD
       - run: mkdir -p src/test
       - run:
-          command: echo $CIRCLE_WORKING_DIRECTORY
+          command: echo $CIRCLE_WORKING_DIRECTORY && echo $PWD
           working_directory: ~/project/src/test
