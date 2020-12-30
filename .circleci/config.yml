@@ -17,7 +17,7 @@ jobs:
   build2:
     docker:
       - image: cimg/base:2020.12
-    working_directory: $HOME/project
+    working_directory: echo "$HOME/project"
     steps:
       - run: echo $CIRCLE_WORKING_DIRECTORY
       - run: eval cd $CIRCLE_WORKING_DIRECTORY
