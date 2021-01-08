@@ -12,19 +12,25 @@ wokflows:
 
 jobs:
   build:
-    executor: node/default
+    # executor: node/default
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
       - run: echo "build"
 
   style:
-    executor: node/default
+    # executor: node/default
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
       - run: echo "style"
 
   test:
-    executor: node/default
+    # executor: node/default
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
       - run: echo "test"
