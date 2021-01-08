@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  node: circleci/node@4.0.0
+
 wokflows:
   sample:
     jobs:
@@ -12,16 +15,17 @@ jobs:
     executor: node/default
     steps:
       - checkout
+      - run: echo "build"
 
   style:
     executor: node/default
     steps:
       - checkout
+      - run: echo "style"
 
   test:
     executor: node/default
     steps:
       - checkout
+      - run: echo "test"
 
-orbs:
-  node: circleci/node@4.0.0
