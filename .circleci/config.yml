@@ -7,8 +7,7 @@ workflows:
 
 jobs:
   deploy-dev:
-    machine: 
-      image: ubuntu-2004:202010-01
+    machine: true
     steps:
       - checkout
       - run:
@@ -19,5 +18,6 @@ jobs:
       - run:
           name: install python 3.9.0
           command: |
+            sudo apt-get update && sudo apt-get upgrade
             pyenv install 3.9.0
             pyenv global 3.9.0
