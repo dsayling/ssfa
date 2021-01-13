@@ -6,9 +6,12 @@ orbs:
 workflows:
   sample:
     jobs:
-      - build
-      - style
-      - test
+      - build:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
 
 jobs:
   build:
@@ -18,20 +21,4 @@ jobs:
     steps:
       - checkout
       - run: echo "build"
-
-  style:
-    # executor: node/default
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      - run: echo "style"
-
-  test:
-    # executor: node/default
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      - run: echo "test"
 
