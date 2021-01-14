@@ -15,6 +15,6 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: echo "build"
+      - run: git fetch --tags
       - run: git describe --exact-match | sed -nre 's/^[^0-9]*(([0-9]+\.)*[0-9]+).*/\1/p'
       - run: echo "valid release tag"
