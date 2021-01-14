@@ -6,12 +6,7 @@ orbs:
 workflows:
   sample:
     jobs:
-      - build:
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
+      - build
 
 jobs:
   build:
@@ -21,5 +16,3 @@ jobs:
     steps:
       - checkout
       - run: echo "build"
-      - run: curl https://circleci.com/api/v1.1/project/${VCS_TYPE}/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BUILD_NUM} -s --user "${CIRCLE_TOKEN}:" -o /tmp/jobinfo.json
-
