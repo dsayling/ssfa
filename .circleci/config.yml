@@ -16,4 +16,4 @@ jobs:
     steps:
       - checkout
       - run: echo "build"
-      - run: echo $CIRCLE_TAG
+      - run: git describe
