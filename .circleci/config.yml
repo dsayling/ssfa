@@ -1,22 +1,25 @@
 version: 2.1
 
 jobs:
-  deploy-dev:
-    machine: true
+  sample:
+    machine:
+      image: ubuntu-2004:202010-01 
     steps:
-      - checkout
       - run:
           name: load latest
           command: |
-            cd /opt/circleci/.pyenv
-            git pull
+            python3 -c 'import lzma; print(dir(lzma))'
+  sample-latest:
+    machine:
+      image: ubuntu-2004:202012-01 
+    steps:
       - run:
-          name: install python 3.9.0
+          name: load latest
           command: |
-            pyenv install 3.9.0
-            pyenv global 3.9.0
+            python3 -c 'import lzma; print(dir(lzma))'
 
 workflows:
   main:
     jobs:
-      - deploy-dev
+      - sample
+      - sample-latest
