@@ -2,16 +2,18 @@ version: 2.1
 
 jobs:
   sample:
-    machine:
-      image: ubuntu-2004:202010-01 
+    docker:
+     - image: cimg/base:stable
     steps:
       - run:
           name: load latest
           command: |
             python3 -c 'import lzma; print(dir(lzma))'
   sample-latest:
-    machine:
-      image: ubuntu-2004:202101-01 
+    environment:
+      BASH_ENV: 'bologna'
+    docker:
+     - image: cimg/base:stable
     steps:
       - run:
           name: load latest
