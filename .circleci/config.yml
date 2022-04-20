@@ -18,6 +18,13 @@ workflows:
               only: master
 
 jobs:
+  test-mac:
+    macos:
+      xcode: 12.5.1 # indicate your selected version of Xcode
+    steps: # a series of commands to run
+      - checkout  # pull down code from your version control system.
+      - run: |
+          echo $HOME
   build:
     docker:
         - image: cimg/python:3.10-browsers
