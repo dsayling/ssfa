@@ -27,7 +27,14 @@ def home():
 def sort_lines(lines: str):
     """Sort the lines of text."""
     lines = lines.splitlines()
-    return sorted(lines)
+    new = []
+    for item in lines:
+        try:
+            item.encode('ascii')
+        except UnicodeEncodeError:
+            continue
+        new.append(item)
+    return sorted(new)
 
 @app.route('/', methods=['POST'])
 def home_post():
