@@ -1,1 +1,5 @@
-<b name="{{ nname }}"> {{ ntext }}</b>
+<div class='list'>
+    {% for item in content %}
+        <p>{{ item }}</p>
+    {% endfor %}
+</div>

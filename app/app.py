@@ -1,11 +1,14 @@
 import flask
+import sys
+from importlib import reload
+from flask import request
 
 app = flask.Flask(__name__)
 
 # info for index.html, loaded on GET
 BUTTON_NAME = 'button'
 ELEM_NAME = 'mtext'
-WELCOME_TEXT = 'Hello! Click for new text'
+WELCOME_TEXT = 'Hello! Click the button to sort the test text'
 BUTTON_TEXT = 'Click me!'
 
 # info for new.html, loaded on POST
@@ -21,12 +24,16 @@ def home():
                                  bname=BUTTON_NAME,
                                  btext=BUTTON_TEXT)
 
+def sort_lines(lines: str):
+    """Sort the lines of text."""
+    lines = lines.splitlines()
+    return sorted(lines)
+
 @app.route('/', methods=['POST'])
 def home_post():
     """When the submit is done, we should load this text."""
-    return flask.render_template('new.html',
-                                 ntext=NEW_TEXT,
-                                 nname=NEW_ELEM_NAME)
+    new_content = sort_lines(request.form['content'])  # type: str
+    return flask.render_template('new.html', content=new_content)
 
 if __name__ == "__main__":
     # leave it on port 5000 for permission sake
